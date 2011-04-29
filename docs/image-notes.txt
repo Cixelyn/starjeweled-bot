@@ -1,0 +1,15 @@
+Start: (1237,112)
+
+(8,8) Board
+5 Colors
+
+
+Sample at (15,44)
+
+Color
+(Y)ellow:  		#FEFEAC
+(G)reen:   		#57C921
+(B)lue:  		#2892F6
+Blac(K):  		#3F3F3E
+(P)urple:  		#6A2271
+(R)ed:			#F03E19

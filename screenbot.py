@@ -2,8 +2,9 @@ import win32com.client
 import win32ui, win32api, win32con,win32gui
 from PIL import ImageGrab
 
-
-class ScreenBotter():
+class Bot():
+    '''Generic Class for writing Win32 screen-scraping bots'''
+    
     def __init__(self,title):
         self.title = title
         (self.left,self.top,self.right,self.bottom) = win32ui.FindWindow(None, title).GetWindowRect()
@@ -20,8 +21,7 @@ class ScreenBotter():
 
     def capture(self,):
         im = ImageGrab.grab((self.left,self.top,self.right,self.bottom))
-        im.save('C:\Users\Cory\Pictures\screenshot.png')
-        print 'image saved'
+        return im
 
     def sendKeys(self,keys):
         self.shell.SendKeys(keys)
@@ -29,6 +29,12 @@ class ScreenBotter():
 if __name__ == "__main__":
     a = ScreenBotter("StarCraft II")
     a.capture()
+
+
+
+
+    # im.save('C:\Users\Cory\Pictures\screenshot.png')
+    #print 'image saved'
 
 
 
