@@ -87,6 +87,8 @@ class StupidBot(BotTemplate):
         
         ## if we reach here, there are no valid moves on the board
         
+        self.checkedLeft = False
+        self.checkedRight = False
         return None
 
 
