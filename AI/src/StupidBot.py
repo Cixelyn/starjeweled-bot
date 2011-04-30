@@ -38,15 +38,15 @@ class StupidBot(BotTemplate):
                     swapH = board.swap(x, y, x + 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
                         return [[x, y], [x + 1, y]]
-                    swapV = board.swap(x, y, x, y + 1)
-                    if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
-                        return [[x, y], [x, y + 1]]
+                    swapV = board.swap(x, y, x, y - 1)
+                    if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
+                        return [[x, y], [x, y - 1]]
             ## nothing found on the left side of the board
             self.state = 2
             
         if ( self.state == 2 ):
             for y in xrange(0, board.numRows, 1):
-                for x in xrange(board.numCols / 2, 0, -1):
+                for x in xrange((board.numCols / 2) - 1, -1, -1):
                     swapH = board.swap(x, y, x - 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
                         return [[x, y], [x - 1, y]]
@@ -57,13 +57,13 @@ class StupidBot(BotTemplate):
             self.state = 0
         if ( self.state == 3 ):
             for y in xrange(board.numRows / 2, board.numRows, 1):
-                for x in xrange(board.numCols / 2, 0, -1):
+                for x in xrange((board.numCols / 2) - 1, -1, -1):
                     swapH = board.swap(x, y, x - 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
                         return [[x, y], [x - 1, y]]
-                    swapV = board.swap(x, y, x, y + 1)
-                    if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
-                        return [[x, y], [x, y + 1]]
+                    swapV = board.swap(x, y, x, y - 1)
+                    if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
+                        return [[x, y], [x, y - 1]]
             ## nothing found on the right side of the board
             self.state = 0
 
