@@ -19,6 +19,11 @@ class StarjeweledBot(Bot):
     def getBoard(self):
         return FindJewels(self.capture())
 
+    def resetBoard(self):
+        posx = 1365 + randint(10,60)
+        posy = 1077 + randint(10,60)
+        self.click((posx,posy))
+        
 
 if __name__ == "__main__":
     bot = StarjeweledBot("StarCraft II")

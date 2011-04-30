@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
         if move==None:
             print 'board reset!'
-            bot.sendKeys('z')
+            bot.resetBoard()
         else:
             print move
             bot.swapTile(move)
