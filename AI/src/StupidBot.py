@@ -22,7 +22,7 @@ class StupidBot(BotTemplate):
         self.state = ( self.state + 1 ) % 4
         
         if ( self.state == 0 ):
-            for y in xrange(0, board.numRows, 1):
+            for y in xrange(0, board.numRows - 1, 1):
                 for x in xrange(0, board.numCols / 2, 1):
                     swapH = board.swap(x, y, x + 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
@@ -33,7 +33,7 @@ class StupidBot(BotTemplate):
             ## nothing found on the left side of the board
             self.state = 2
         if ( self.state == 1 ):
-            for y in xrange(board.numRows / 2, board.numRows, 1):
+            for y in xrange(board.numRows / 2, board.numRows - 1, 1):
                 for x in xrange(0, board.numCols / 2, 1):
                     swapH = board.swap(x, y, x + 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
@@ -45,7 +45,7 @@ class StupidBot(BotTemplate):
             self.state = 2
             
         if ( self.state == 2 ):
-            for y in xrange(0, board.numRows, 1):
+            for y in xrange(0, board.numRows - 1, 1):
                 for x in xrange(board.numCols - 1, (board.numCols / 2) - 1, -1):
                     swapH = board.swap(x, y, x - 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
@@ -56,7 +56,7 @@ class StupidBot(BotTemplate):
             ## nothing found on the right side of the board
             self.state = 0
         if ( self.state == 3 ):
-            for y in xrange(board.numRows / 2, board.numRows, 1):
+            for y in xrange(board.numRows / 2, board.numRows - 1, 1):
                 for x in xrange(board.numCols - 1, (board.numCols / 2) - 1, -1):
                     swapH = board.swap(x, y, x - 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
