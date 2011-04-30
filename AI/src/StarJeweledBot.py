@@ -5,6 +5,18 @@ from imaging import FindJewels
 startX, startY = (1237,112)
 tileSize = 80
 
+buttonSize = 60
+buttonPos = {
+    'tank':     (1596,876),
+    'reset':    (1365,1077),
+    'colossus': (1673,876),
+    'ultralisk':(1673,953),
+    'ghost':    (1442,953),
+    'hydralisk':(1442,876),
+}
+    
+
+
 class StarjeweledBot(Bot):
 
     def clickTile(self,(x,y)):
@@ -19,14 +31,15 @@ class StarjeweledBot(Bot):
     def getBoard(self):
         return FindJewels(self.capture())
 
-    def resetBoard(self):
-        posx = 1365 + randint(10,60)
-        posy = 1077 + randint(10,60)
+    def clickButton(self,name):
+        (x,y) = buttonPos[name]
+        posx = x + randint(10,buttonSize)
+        posy = y + randint(10,buttonSize)
         self.click((posx,posy))
+
+        
         
 
 if __name__ == "__main__":
     bot = StarjeweledBot("StarCraft II")
-    bot.swapTile((1,1),(1,2))
-    bot.swapTile((5,5),(4,5))
-    bot.swapTile((3,1),(3,2))
+    bot.clickButton('tank')

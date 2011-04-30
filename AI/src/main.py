@@ -25,17 +25,30 @@ if __name__ == "__main__":
     bot = StarjeweledBot("Starcraft II")
 
 
+    reset = 0
+    tank = 0
     while True:
         pythoncom.PumpWaitingMessages()
         board = bot.getBoard();
         move = ai.getMove(Board(board))
 
+        print move
+        
         if move==None:
-            print 'board reset!'
-            bot.resetBoard()
+            reset+=1
+            if reset > 10:                    
+                print 'board reset!'
+                print bot.getBoard()
+                bot.clickButton('reset')
         else:
-            print move
+            reset = 0
             bot.swapTile(move)
+
+
+        tank+=1
+        if tank>23:
+            bot.clickButton('colossus')
+            tank=0
 
         sleep(0.1)
 
