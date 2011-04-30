@@ -27,6 +27,23 @@ def FindJewels(img):
     return board
 
 
+
+
+eStartX,eStartY = (1228,810)
+eEndX = 1881
+eWidth = 654
+
+def FindEnergy(img):
+    y = eStartY
+    for x in range(eWidth):
+        if img.getpixel(eStartX + x , y)!=(0,0,0):
+            break
+    return (x/eWidth)*1000
+
+
+
+
+
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
     img = plt.imread('tests/screenshot.png')

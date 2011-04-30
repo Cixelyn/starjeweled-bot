@@ -23,7 +23,7 @@ class StupidBot(BotTemplate):
         
         self.state = ( self.state + 1 ) % 4
         
-        while ( not checkedLeft or not checkedRight ):
+        while ( not self.checkedLeft or not self.checkedRight ):
         
             if ( self.state == 0 ):
                 for y in xrange(0, board.numRows - 1, 1):

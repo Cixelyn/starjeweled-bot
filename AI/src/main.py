@@ -29,8 +29,14 @@ if __name__ == "__main__":
         pythoncom.PumpWaitingMessages()
         board = bot.getBoard();
         move = ai.getMove(Board(board))
-        print move
-        bot.swapTile(move)
+
+        if move==None:
+            print 'board reset!'
+            bot.sendKeys('z')
+        else:
+            print move
+            bot.swapTile(move)
+
         sleep(0.1)
 
 
