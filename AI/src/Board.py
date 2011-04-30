@@ -14,12 +14,20 @@ class Board:
         self.numRows = len(self.array[0])
     
     ##
+    ## Checks if dimensions are valid
+    ##
+    
+    def isValid(self, X, Y):
+        
+        return not ( X < 0 or X >= len(self.array) or Y < 0 or Y >= len(self.array[0]) )
+    
+    ##
     ## Gets the value of the board at [X,Y]
     ##
     
     def get(self, X, Y):
         
-        if ( X < 0 or X >= len(self.array) or Y < 0 or Y >= len(self.array[0]) ):
+        if ( not self.isValid(self, X, Y) ):
             return None
         else:
             return self.array[X][Y]
@@ -48,11 +56,16 @@ class Board:
             return True
         else:
             return False
-        
+
     ##
     ## Returns a new board with the given squares swapped
     ##
     
     def swap(self, X1, Y1, X2, Y2):
 
-        assert False, "Implement me!"
+        assert ( self.isValid(X1, Y1) and self.isValid(X2, Y2) ), "Invalid board location."
+        newArray = [[value for value in column] for column in self.array]
+        (newArray[X1][Y1], newArray[X2][Y2]) = (newArray[X2][Y2], newArray[X1][Y1])
+        return Board(newArray)
+    
+    
