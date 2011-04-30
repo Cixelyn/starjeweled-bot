@@ -13,6 +13,7 @@ buttonPos = {
     'ultralisk':(1673,953),
     'ghost':    (1442,953),
     'hydralisk':(1442,876),
+    'mutalisk': (1519,876),
 }
     
 

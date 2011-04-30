@@ -5,7 +5,7 @@ from time import sleep
 from Board import Board
 from StupidBot import StupidBot
 from StarJeweledBot import StarjeweledBot
-
+from random import randint
 
 
 def OnKbEvent(event):
@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
 
     reset = 0
-    tank = 0
+    build = 0
     while True:
         pythoncom.PumpWaitingMessages()
         board = bot.getBoard();
@@ -45,16 +45,16 @@ if __name__ == "__main__":
             bot.swapTile(move)
 
 
-        tank+=1
-        if tank>23:
-            bot.clickButton('colossus')
-            tank=0
+        build+=1
+        if build>20:
+            if randint(0,1)==0:
+                bot.clickButton('colossus')
+            else:
+                bot.clickButton('mutalisk')
+                sleep(0.05)
+                bot.clickButton('mutalisk')
+            build=0
 
-        sleep(0.1)
+        sleep(0.05)
 
-
-
-    
-
-        
 
