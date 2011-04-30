@@ -14,20 +14,18 @@ colors = {
 }
 
 def FindJewels(img):
-    '''Assuming we get the raw numpy array from screen capture'''
+    '''Assuming we get the raw PIL array from screen capture'''
 
-    img = np.asarray(img*255)
     board = [[0]*8 for i in range(8)]
         
     for x in range(8):
         for y in range(8):
-            (samplec,sampler) = (startX+offsetX+tileSize*x,
+            (samplex,sampley) = (startX+offsetX+tileSize*x,
                                  startY+offsetY+tileSize*y)
 
-            
-            board[x][y] = colors[img[sampler,samplec][0]]
+            board[x][y] = colors[img.getpixel((samplex,sampley))[0]]
     return board
-            
+
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
