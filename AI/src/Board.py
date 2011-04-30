@@ -1,6 +1,6 @@
 class Board:
     
-    shapes = ['r', 'g', 'b', 'k', 'y', 'p']
+    shapes = ['r', 'g', 'b', 'k', 'y', 'p','x']
     array = None
     
     def __init__(self, array):
@@ -27,7 +27,7 @@ class Board:
     
     def get(self, X, Y):
         
-        if ( not self.isValid(self, X, Y) ):
+        if ( not self.isValid(X, Y) ):
             return None
         else:
             return self.array[X][Y]

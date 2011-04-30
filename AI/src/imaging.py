@@ -23,7 +23,7 @@ def FindJewels(img):
             (samplex,sampley) = (startX+offsetX+tileSize*x,
                                  startY+offsetY+tileSize*y)
 
-            board[x][y] = colors[img.getpixel((samplex,sampley))[0]]
+            board[x][y] = colors.setdefault(img.getpixel((samplex,sampley))[0],'x')
     return board
 
 

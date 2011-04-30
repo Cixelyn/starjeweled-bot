@@ -12,7 +12,7 @@ class StarjeweledBot(Bot):
         posy = startY + y*tileSize + randint(10,70)
         self.click((posx,posy))
         
-    def swapTile(self,tile1,tile2):
+    def swapTile(self,(tile1,tile2)):
         self.clickTile(tile1)
         self.clickTile(tile2)
 
