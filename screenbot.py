@@ -12,7 +12,7 @@ class Bot():
         self.shell = win32com.client.Dispatch("WScript.Shell")
         self.shell.AppActivate(title)
 
-    def click(self,x,y):
+    def click(self,(x,y)):
         '''clicks w/ offsets'''
         x,y = x+self.left,y+self.top
         win32api.SetCursorPos((x,y))
@@ -27,7 +27,7 @@ class Bot():
         self.shell.SendKeys(keys)
 
 if __name__ == "__main__":
-    a = ScreenBotter("StarCraft II")
+    a = Bot("StarCraft II")
     a.capture()
 
 
