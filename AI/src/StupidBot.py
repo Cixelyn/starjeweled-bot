@@ -46,7 +46,7 @@ class StupidBot(BotTemplate):
             
         if ( self.state == 2 ):
             for y in xrange(0, board.numRows, 1):
-                for x in xrange((board.numCols / 2) - 1, -1, -1):
+                for x in xrange(board.numCols - 1, (board.numCols / 2) - 1, -1):
                     swapH = board.swap(x, y, x - 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
                         return [[x, y], [x - 1, y]]
@@ -57,7 +57,7 @@ class StupidBot(BotTemplate):
             self.state = 0
         if ( self.state == 3 ):
             for y in xrange(board.numRows / 2, board.numRows, 1):
-                for x in xrange((board.numCols / 2) - 1, -1, -1):
+                for x in xrange(board.numCols - 1, (board.numCols / 2) - 1, -1):
                     swapH = board.swap(x, y, x - 1, y)
                     if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
                         return [[x, y], [x - 1, y]]
