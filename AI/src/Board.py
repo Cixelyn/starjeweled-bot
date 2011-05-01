@@ -1,7 +1,10 @@
 class Board:
     
-    shapes = ['r', 'g', 'b', 'k', 'y', 'p','x']
+    shapes = ['r', 'g', 'b', 'k', 'y', 'p', 'x']
     array = None
+    mark = None
+    numCols = -1
+    numRows = -1
     
     def __init__(self, array):
         
@@ -9,9 +12,12 @@ class Board:
         for x in xrange(len(array)):
             for y in xrange(len(array[0])):
                 assert ( array[x][y] in self.shapes ), "Invalid board!"
-        self.array = array
+                if ( array[x][y] == 'x' ):
+                    array[x][y] = '' + x + ' ' + y
+        self.array = array 
         self.numCols = len(self.array)
         self.numRows = len(self.array[0])
+        self.mark = [[0 for row in xrange(self.numRows)] for col in xrange(self.numCols)]
     
     ##
     ## Checks if dimensions are valid
@@ -38,7 +44,13 @@ class Board:
         
     def hasTripleAnywhere(self):
         
-        assert False, "Implement me!"
+        for Y in xrange(self.numRows):
+            for X in xrange(self.numCols):
+                if ( self.get(X, Y) == self.get(X + 1, Y) and self.get(X + 1, Y) == self.get(X + 2, Y) ):
+                    return True
+                if ( self.get(X, Y) == self.get(X, Y + 1) and self.get(X, Y + 1) == self.get(X, Y + 2) ):
+                    return True
+        return False
         
     ##
     ## Returns if there is a triple at [X,Y]
@@ -46,7 +58,7 @@ class Board:
         
     def hasTripleAt(self, X, Y):
         
-        assert self.get(X, Y) != None, "Invalid board location."
+        assert self.isValid(X, Y), "Invalid board location."
         
         if ( self.get(X, Y) == self.get(X - 1, Y) and self.get(X - 1, Y) == self.get(X - 2, Y) ):
             return True
@@ -66,6 +78,8 @@ class Board:
     def swap(self, X1, Y1, X2, Y2):
 
         assert ( self.isValid(X1, Y1) and self.isValid(X2, Y2) ), "Invalid board location."
+        self.mark[X1][Y1] += 1
+        self.mark[X2][Y2] += 1
         newArray = [[value for value in column] for column in self.array]
         (newArray[X1][Y1], newArray[X2][Y2]) = (newArray[X2][Y2], newArray[X1][Y1])
         return Board(newArray)

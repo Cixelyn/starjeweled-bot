@@ -9,8 +9,6 @@ class StupidBot(BotTemplate):
     def __init__(self):
         
         self.state = -1
-        self.checkedLeft = False
-        self.checkedRight = False
         
     ##
     ## Returns the first pair of squares that can be swapped
@@ -21,71 +19,64 @@ class StupidBot(BotTemplate):
     
     def getMove(self, board):
         
-        self.checkedLeft = False
-        self.checkedRight = False
-        self.state = ( self.state + 1 ) % 4
+        quadsChecked = 0
         
-        while ( not self.checkedLeft or not self.checkedRight ):
+        while ( quadsChecked < 4 ):
         
+            quadsChecked += 1
+            self.state = ( self.state + 1 ) % 4
+        
+            ## top-left
             if ( self.state == 0 ):
-                for y in xrange(0, board.numRows - 1, 1):
+                for y in xrange(0, board.numRows / 2, 1):
                     for x in xrange(0, board.numCols / 2, 1):
+                        ## swap right
                         swapH = board.swap(x, y, x + 1, y)
-                        if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
-                            self.checkedLeft = False
-                            self.checkedRight = False
+                        if swapH.hasTripleAnywhere(): #( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
                             return [[x, y], [x + 1, y]]
+                        ## swap down
                         swapV = board.swap(x, y, x, y + 1)
-                        if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
-                            self.checkedLeft = False
-                            self.checkedRight = False
+                        if swapV.hasTripleAnywhere(): #( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
                             return [[x, y], [x, y + 1]]
-                ## nothing found on the left side of the board
-                self.state = 2
-                self.checkedLeft = True
                 
+            ## bottom-left
             if ( self.state == 1 ):
-                for y in xrange(board.numRows / 2, board.numRows - 1, 1):
+                for y in xrange(board.numRows - 1, (board.numRows / 2) - 1, -1):
                     for x in xrange(0, board.numCols / 2, 1):
+                        ## swap right
                         swapH = board.swap(x, y, x + 1, y)
-                        if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
-                            self.checkedLeft = False
-                            self.checkedRight = False
+                        if swapH.hasTripleAnywhere(): #( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
                             return [[x, y], [x + 1, y]]
+                        ## swap up
                         swapV = board.swap(x, y, x, y - 1)
-                        if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
-                            self.checkedLeft = False
-                            self.checkedRight = False
+                        if swapV.hasTripleAnywhere(): #( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
                             return [[x, y], [x, y - 1]]
-                ## nothing found on the left side of the board
-                self.state = 2
-                self.checkedLeft = True
                 
+            ## top-right
             if ( self.state == 2 ):
-                for y in xrange(0, board.numRows - 1, 1):
+                for y in xrange(0, board.numRows / 2, 1):
                     for x in xrange(board.numCols - 1, (board.numCols / 2) - 1, -1):
+                        ## swap left
                         swapH = board.swap(x, y, x - 1, y)
-                        if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
+                        if swapH.hasTripleAnywhere(): #( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
                             return [[x, y], [x - 1, y]]
+                        ## swap down
                         swapV = board.swap(x, y, x, y + 1)
-                        if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
+                        if swapV.hasTripleAnywhere(): #( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
                             return [[x, y], [x, y + 1]]
-                ## nothing found on the right side of the board
-                self.state = 0
-                self.checkedRight = True
                 
+            ## bottom-right
             if ( self.state == 3 ):
-                for y in xrange(board.numRows / 2, board.numRows - 1, 1):
+                for y in xrange(board.numRows - 1, (board.numRows / 2) - 1, -1):
                     for x in xrange(board.numCols - 1, (board.numCols / 2) - 1, -1):
+                        ## swap left
                         swapH = board.swap(x, y, x - 1, y)
-                        if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
+                        if swapH.hasTripleAnywhere(): #( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
                             return [[x, y], [x - 1, y]]
+                        ## swap up
                         swapV = board.swap(x, y, x, y - 1)
-                        if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
+                        if swapV.hasTripleAnywhere(): #( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
                             return [[x, y], [x, y - 1]]
-                ## nothing found on the right side of the board
-                self.state = 0
-                self.checkedRight = True
         
         ## if we reach here, there are no valid moves on the board
         
@@ -93,7 +84,15 @@ class StupidBot(BotTemplate):
 
 
 if __name__ == "__main__":
-    b = [['g', 'r', 'r', 'k', 'p', 'g', 'b', 'g'], ['p', 'b', 'y', 'b', 'y', 'b', 'p', 'p'], ['b', 'r', 'r', 'g', 'b', 'k', 'k', 'g'], ['b', 'k', 'p', 'y', 'r', 'p', 'b', 'y'], ['y', 'r', 'g', 'r', 'g', 'r', 'y', 'p'], ['x', 'b', 'y', 'g', 'b', 'y', 'b', 'g'], ['p', 'r', 'b', 'p', 'g', 'p', 'y', 'p'], ['k', 'y', 'r', 'y', 'k', 'g', 'b', 'g']]
+    b = [['y', 'y', 'b', 'g', 'k', 'y', 'p', 'g'],
+['r', 'p', 'g', 'y', 'g', 'p', 'g', 'p'],
+['p', 'k', 'p', 'r', 'p', 'r', 'k', 'y'],
+['k', 'g', 'b', 'k', 'g', 'b', 'p', 'g'],
+['b', 'p', 'y', 'b', 'y', 'g', 'y', 'p'],
+['r', 'p', 'g', 'p', 'g', 'p', 'r', 'y'],
+['k', 'k', 'g', 'r', 'y', 'k', 'p', 'b'],
+['p', 'y', 'p', 'r', 'r', 'p', 'g', 'g']]
+
 
     
     bot = StupidBot()
