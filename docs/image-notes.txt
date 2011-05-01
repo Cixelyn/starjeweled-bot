@@ -6,10 +6,24 @@ Start: (1237,112)
 
 Sample at (15,44)
 
-Color
-(Y)ellow:  		#FEFEAC
-(G)reen:   		#57C921
-(B)lue:  		#2892F6
-Blac(K):  		#3F3F3E
-(P)urple:  		#6A2271
-(R)ed:			#F03E19
+Color			Total		R Value
+(Y)ellow:  		#FEFEAC			254
+(G)reen:   		#57C921			87
+(B)lue:  		#2892F6			40
+Blac(K):  		#3F3F3E			63	
+(P)urple:  		#6A2271			106
+(R)ed:			#F03E19			240
+
+
+
+Zealot: Q
+Hydralisk: W
+Mutalisk: E
+SeigeTank: R
+Collossus: T
+Roach: A
+Ghost: S
+Banshee: D
+Immortal: F
+Ultralisk: G
+Reset Board: Z

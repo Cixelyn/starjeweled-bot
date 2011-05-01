@@ -1,6 +1,6 @@
 from random import randint
 from screenbot import Bot
-from imaging import FindJewels
+from imaging import FindJewels,FindEnergy
 
 startX, startY = (1237,112)
 tileSize = 80
@@ -29,8 +29,11 @@ class StarjeweledBot(Bot):
         self.clickTile(tile1)
         self.clickTile(tile2)
 
-    def getBoard(self):
-        return FindJewels(self.capture())
+    def getBoard(self,img):
+        return FindJewels(img)
+
+    def getEnergy(self,img):
+        return FindEnergy(img)
 
     def clickButton(self,name):
         (x,y) = buttonPos[name]

@@ -29,7 +29,9 @@ if __name__ == "__main__":
     build = 0
     while True:
         pythoncom.PumpWaitingMessages()
-        board = bot.getBoard();
+        img = bot.capture()
+        board = bot.getBoard(img)
+        energy = bot.getEnergy(img)
         move = ai.getMove(Board(board))
 
         print move
@@ -38,7 +40,7 @@ if __name__ == "__main__":
             reset+=1
             if reset > 10:                    
                 print 'board reset!'
-                print bot.getBoard()
+                print bot.getBoard(img)
                 bot.clickButton('reset')
         else:
             reset = 0
@@ -46,14 +48,8 @@ if __name__ == "__main__":
 
 
         build+=1
-        if build>20:
-            if randint(0,1)==0:
-                bot.clickButton('colossus')
-            else:
-                bot.clickButton('mutalisk')
-                sleep(0.05)
-                bot.clickButton('mutalisk')
-            build=0
+        if energy>500:
+            bot.clickButton('colossus')
 
         sleep(0.05)
 
