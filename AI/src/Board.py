@@ -46,6 +46,8 @@ class Board:
         
     def hasTripleAt(self, X, Y):
         
+        assert self.get(X, Y) != None, "Invalid board location."
+        
         if ( self.get(X, Y) == self.get(X - 1, Y) and self.get(X - 1, Y) == self.get(X - 2, Y) ):
             return True
         elif ( self.get(X, Y) == self.get(X + 1, Y) and self.get(X + 1, Y) == self.get(X + 2, Y) ):

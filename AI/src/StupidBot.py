@@ -21,6 +21,8 @@ class StupidBot(BotTemplate):
     
     def getMove(self, board):
         
+        self.checkedLeft = False
+        self.checkedRight = False
         self.state = ( self.state + 1 ) % 4
         
         while ( not self.checkedLeft or not self.checkedRight ):
@@ -87,20 +89,12 @@ class StupidBot(BotTemplate):
         
         ## if we reach here, there are no valid moves on the board
         
-        self.checkedLeft = False
-        self.checkedRight = False
         return None
 
 
 if __name__ == "__main__":
-    b = [['b', 'r', 'r', 'g', 'y', 'b', 'p', 'b'],
-             ['g', 'b', 'b', 'y', 'b', 'k', 'p', 'y'],
-             ['k', 'g', 'y', 'g', 'g', 'r', 'k', 'b'],
-             ['b', 'y', 'k', 'b', 'y', 'p', 'g', 'k'],
-             ['r', 'b', 'p', 'g', 'k', 'g', 'p', 'b'],
-             ['k', 'k', 'y', 'r', 'g', 'g', 'r', 'b'],
-             ['k', 'p', 'k', 'g', 'y', 'r', 'p', 'g'],
-             ['y', 'k', 'b', 'b', 'r', 'g', 'y', 'k']]
+    b = [['g', 'r', 'r', 'k', 'p', 'g', 'b', 'g'], ['p', 'b', 'y', 'b', 'y', 'b', 'p', 'p'], ['b', 'r', 'r', 'g', 'b', 'k', 'k', 'g'], ['b', 'k', 'p', 'y', 'r', 'p', 'b', 'y'], ['y', 'r', 'g', 'r', 'g', 'r', 'y', 'p'], ['x', 'b', 'y', 'g', 'b', 'y', 'b', 'g'], ['p', 'r', 'b', 'p', 'g', 'p', 'y', 'p'], ['k', 'y', 'r', 'y', 'k', 'g', 'b', 'g']]
+
     
     bot = StupidBot()
     from Board import Board
