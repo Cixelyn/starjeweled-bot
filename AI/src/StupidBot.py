@@ -32,11 +32,11 @@ class StupidBot(BotTemplate):
                     for x in xrange(0, board.numCols / 2, 1):
                         ## swap right
                         swapH = board.swap(x, y, x + 1, y)
-                        if swapH.hasTripleAnywhere(): #( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
+                        if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
                             return [[x, y], [x + 1, y]]
                         ## swap down
                         swapV = board.swap(x, y, x, y + 1)
-                        if swapV.hasTripleAnywhere(): #( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
+                        if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
                             return [[x, y], [x, y + 1]]
                 
             ## bottom-left
@@ -45,11 +45,11 @@ class StupidBot(BotTemplate):
                     for x in xrange(0, board.numCols / 2, 1):
                         ## swap right
                         swapH = board.swap(x, y, x + 1, y)
-                        if swapH.hasTripleAnywhere(): #( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
+                        if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x + 1, y) ):
                             return [[x, y], [x + 1, y]]
                         ## swap up
                         swapV = board.swap(x, y, x, y - 1)
-                        if swapV.hasTripleAnywhere(): #( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
+                        if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
                             return [[x, y], [x, y - 1]]
                 
             ## top-right
@@ -58,11 +58,11 @@ class StupidBot(BotTemplate):
                     for x in xrange(board.numCols - 1, (board.numCols / 2) - 1, -1):
                         ## swap left
                         swapH = board.swap(x, y, x - 1, y)
-                        if swapH.hasTripleAnywhere(): #( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
+                        if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
                             return [[x, y], [x - 1, y]]
                         ## swap down
                         swapV = board.swap(x, y, x, y + 1)
-                        if swapV.hasTripleAnywhere(): #( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
+                        if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y + 1) ):
                             return [[x, y], [x, y + 1]]
                 
             ## bottom-right
@@ -71,11 +71,11 @@ class StupidBot(BotTemplate):
                     for x in xrange(board.numCols - 1, (board.numCols / 2) - 1, -1):
                         ## swap left
                         swapH = board.swap(x, y, x - 1, y)
-                        if swapH.hasTripleAnywhere(): #( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
+                        if ( swapH.hasTripleAt(x, y) or swapH.hasTripleAt(x - 1, y) ):
                             return [[x, y], [x - 1, y]]
                         ## swap up
                         swapV = board.swap(x, y, x, y - 1)
-                        if swapV.hasTripleAnywhere(): #( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
+                        if ( swapV.hasTripleAt(x, y) or swapV.hasTripleAt(x, y - 1) ):
                             return [[x, y], [x, y - 1]]
         
         ## if we reach here, there are no valid moves on the board

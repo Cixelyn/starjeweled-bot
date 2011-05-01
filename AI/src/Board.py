@@ -60,11 +60,15 @@ class Board:
         
         assert self.isValid(X, Y), "Invalid board location."
         
-        if ( self.get(X, Y) == self.get(X - 1, Y) and self.get(X - 1, Y) == self.get(X - 2, Y) ):
+        if ( self.get(X - 2, Y) == self.get(X - 1, Y) and self.get(X - 1, Y) == self.get(X, Y) ):
+            return True
+        elif ( self.get(X - 1, Y) == self.get(X, Y) and self.get(X, Y) == self.get(X + 1, Y) ):
             return True
         elif ( self.get(X, Y) == self.get(X + 1, Y) and self.get(X + 1, Y) == self.get(X + 2, Y) ):
             return True
-        elif ( self.get(X, Y) == self.get(X, Y - 1) and self.get(X, Y - 1) == self.get(X, Y - 2) ):
+        elif ( self.get(X, Y - 2) == self.get(X, Y - 1) and self.get(X, Y - 1) == self.get(X, Y) ):
+            return True
+        elif ( self.get(X, Y - 1) == self.get(X, Y) and self.get(X, Y) == self.get(X, Y + 1) ):
             return True
         elif ( self.get(X, Y) == self.get(X, Y + 1) and self.get(X, Y + 1) == self.get(X, Y + 2) ):
             return True
