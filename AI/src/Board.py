@@ -13,7 +13,7 @@ class Board:
             for y in xrange(len(array[0])):
                 assert ( array[x][y] in self.shapes ), "Invalid board!"
                 if ( array[x][y] == 'x' ):
-                    array[x][y] = '' + x + ' ' + y
+                    array[x][y] = str(x) + ' ' + str(y)
         self.array = array 
         self.numCols = len(self.array)
         self.numRows = len(self.array[0])
