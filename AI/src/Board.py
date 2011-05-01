@@ -11,9 +11,9 @@ class Board:
         assert ( array != None and len(array) > 0 and len(array[0]) > 0 ), "Invalid board!"
         for x in xrange(len(array)):
             for y in xrange(len(array[0])):
-                assert ( array[x][y] in self.shapes ), "Invalid board!"
+                assert ( array[x][y][0] in self.shapes ), "Invalid board!"
                 if ( array[x][y] == 'x' ):
-                    array[x][y] = str(x) + ' ' + str(y)
+                    array[x][y] += ' ' + str(x) + ' ' + str(y)
         self.array = array 
         self.numCols = len(self.array)
         self.numRows = len(self.array[0])

@@ -84,7 +84,7 @@ class StupidBot(BotTemplate):
 
 
 if __name__ == "__main__":
-    b = [['y', 'y', 'b', 'g', 'k', 'y', 'p', 'g'],
+    b = [['x', 'x', 'b', 'x', 'k', 'y', 'p', 'g'],
 ['r', 'p', 'g', 'y', 'g', 'p', 'g', 'p'],
 ['p', 'k', 'p', 'r', 'p', 'r', 'k', 'y'],
 ['k', 'g', 'b', 'k', 'g', 'b', 'p', 'g'],
