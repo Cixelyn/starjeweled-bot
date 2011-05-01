@@ -5,12 +5,12 @@ offsetX, offsetY = (15,44)
 tileSize = 80
 
 colors = {
-    254 : 'y',
-    87  : 'g',
-    40  : 'b',
-    63  : 'k',
-    106 : 'p',
-    240 : 'r', 
+    (254,254,172) : 'y',
+    (87,201,33)  : 'g',
+    (40,146,246)  : 'b',
+    (63,63,62)  : 'k',
+    (106,34,113) : 'p',
+    (240,62,25) : 'r', 
 }
 
 def FindJewels(img):
@@ -23,7 +23,7 @@ def FindJewels(img):
             (samplex,sampley) = (startX+offsetX+tileSize*x,
                                  startY+offsetY+tileSize*y)
 
-            board[x][y] = colors.setdefault(img.getpixel((samplex,sampley))[0],'x')
+            board[x][y] = colors.setdefault(img.getpixel((samplex,sampley)),'x')
     return board
 
 
@@ -34,11 +34,10 @@ eEndX = 1881
 eWidth = 654
 
 def FindEnergy(img):
-    y = eStartY
-    for x in range(eWidth):
-        if img.getpixel(eStartX + x , y)!=(0,0,0):
+    for x in range(eWidth+1): #include up to width limit
+        if img.getpixel((eStartX + x , eStartY))==(0,0,0):
             break
-    return (x/eWidth)*1000
+    return x/float(eWidth)*1000
 
 
 
@@ -46,5 +45,6 @@ def FindEnergy(img):
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    img = plt.imread('tests/screenshot.png')
+    import Image
+    img = Image.fromarray(plt.imread('../../tests/screenshot.png'))
     board = FindJewels(img)
