@@ -54,7 +54,11 @@ if __name__ == "__main__":
                 bot.clickButton('reset')
         else:
             resetDelay = 0
-            bot.swapTile(move)
+            try:
+                bot.swapTile(move)
+            except:
+                sleep(2)
+                continue
 
         #Building Code
         i = buildNumber%len(bo)
@@ -66,6 +70,9 @@ if __name__ == "__main__":
 
 
         #Delay
-        sleep(0.1)
+        try:
+            sleep(0.1)
+        except:
+            sleep(1)
 
 
